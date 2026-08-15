@@ -26,16 +26,56 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- html2pdf CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
     <style>
         body { font-family: 'Inter', sans-serif; }
+
+        /* REGLAS DE IMPRESIÓN Y EXPORTACIÓN A PDF LIMPIAS */
+        @media print {
+            /* Ocultar elementos de UI interactiva */
+            #mainHeader,
+            #navigationBar,
+            .step-back-btn,
+            .empty-competitor,
+            .pdf-hide {
+                display: none !important;
+            }
+
+            /* Forzar visualización de todas las secciones ocultas */
+            .step-section {
+                display: block !important;
+                box-shadow: none !important;
+                border: 1px solid #e2e8f0 !important;
+                margin-bottom: 1.5rem !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            /* Evitar cortes dentro de tarjetas, cajas y preguntas */
+            .competitor-card,
+            .bg-slate-50,
+            .space-y-6 > div,
+            .grid > div {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            body {
+                background-color: #ffffff !important;
+                padding: 0 !important;
+            }
+
+            main {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
 
     <!-- Header / Banner -->
-    <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-50 backdrop-blur-md bg-slate-900/90">
+    <header id="mainHeader" class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-50 backdrop-blur-md bg-slate-900/90">
         <div class="max-w-5xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-4">
             <div class="flex items-center space-x-3">
                 <div class="p-2 bg-brand-500/10 rounded-lg border border-brand-500/20 text-brand-500">
@@ -61,7 +101,7 @@
     <main class="max-w-4xl mx-auto px-4 py-8">
 
         <!-- FORMULARIO -->
-        <form id="briefForm" action="https://formspree.io/f/xqpzdpyk" method="POST" class="space-y-8">
+        <form id="briefForm" class="space-y-8">
 
             <!-- SECCIÓN 1 -->
             <section class="step-section bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" data-step="1">
@@ -132,7 +172,7 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN 2: IDENTIDAD, PERCEPCIÓN Y PERSONALIDAD DE MARCA -->
+            <!-- SECCIÓN 2: IDENTIDAD -->
             <section class="step-section hidden bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" data-step="2">
                 <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
                     <div class="flex items-center space-x-3">
@@ -159,7 +199,6 @@
                         </div>
                     </div>
 
-                    <!-- Frase de Recomendación Boca a Boca -->
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-1">Frase de Recomendación Ideal ("Boca a Boca") *</label>
                         <p class="text-xs text-slate-500 mb-2">Si un paciente lo recomienda a un familiar, ¿qué frase exacta le gustaría que dijera?</p>
@@ -169,7 +208,6 @@
                         </div>
                     </div>
 
-                    <!-- Personalidad y Tono de Comunicación (Dinámico con Viñetas) -->
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-1">
                             Personalidad y Tono de Comunicación *
@@ -251,7 +289,6 @@
                 </div>
 
                 <div class="space-y-6">
-                    <!-- PERFIL DEMOGRÁFICO -->
                     <div class="space-y-4">
                         <h4 class="text-md font-bold text-slate-800 border-b border-slate-200 pb-1">Perfil Demográfico:</h4>
                         
@@ -266,7 +303,6 @@
                         </div>
                     </div>
 
-                    <!-- PERFIL PSICOGRÁFICO Y COMPORTAMIENTO -->
                     <div class="space-y-4 pt-2">
                         <h4 class="text-md font-bold text-slate-800 border-b border-slate-200 pb-1">Perfil Psicográfico y Comportamiento:</h4>
 
@@ -283,7 +319,7 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN 5: COMPETENCIA Y ENTORNO -->
+            <!-- SECCIÓN 5: COMPETENCIA -->
             <section class="step-section hidden bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" data-step="5">
                 <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
                     <div class="flex items-center space-x-3">
@@ -302,7 +338,6 @@
                             Competidores directos y análisis comparativo *
                         </label>
 
-                        <!-- Contenedor dinámico de competidores con sus cuadros comparativos de 3 ventajas y 3 desventajas -->
                         <div id="competitorsContainer" class="space-y-4"></div>
 
                         <input type="hidden" name="5_analisis_competencia_json" id="competitorsHiddenInput">
@@ -325,7 +360,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <!-- FORTALEZAS -->
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
                         <label class="block text-sm font-bold text-emerald-800">
                             Fortalezas (Internas) *
@@ -336,7 +370,6 @@
                         <span id="fortalezasError" class="hidden text-xs font-semibold text-red-500 mt-1 block">Ingrese al menos una fortaleza.</span>
                     </div>
 
-                    <!-- OPORTUNIDADES -->
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
                         <label class="block text-sm font-bold text-blue-800">
                             Oportunidades (Externas) *
@@ -347,7 +380,6 @@
                         <span id="oportunidadesError" class="hidden text-xs font-semibold text-red-500 mt-1 block">Ingrese al menos una oportunidad.</span>
                     </div>
 
-                    <!-- DEBILIDADES -->
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
                         <label class="block text-sm font-bold text-amber-800">
                             Debilidades (Internas) *
@@ -358,7 +390,6 @@
                         <span id="debilidadesError" class="hidden text-xs font-semibold text-red-500 mt-1 block">Ingrese al menos una debilidad.</span>
                     </div>
 
-                    <!-- AMENAZAS -->
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
                         <label class="block text-sm font-bold text-rose-800">
                             Amenazas (Externas) *
@@ -396,7 +427,7 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN 8: DESGLOSE DEL PROYECTO (OBJETIVOS COMERCIALES Y DE MARKETING) -->
+            <!-- SECCIÓN 8: DESGLOSE DEL PROYECTO -->
             <section class="step-section hidden bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" data-step="8">
                 <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
                     <div class="flex items-center space-x-3">
@@ -410,7 +441,6 @@
                 </div>
 
                 <div class="space-y-6">
-                    <!-- 1. OBJETIVO MACRO -->
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-2">
                             1. Objetivo Principal de Negocio (Macro) *
@@ -421,7 +451,6 @@
                         <textarea name="8_objetivo_macro" rows="2" placeholder="Ej: Incrementar la facturación mensual en un 30% o llenar la capacidad de atención de la sede durante las mañanas..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                     </div>
 
-                    <!-- 2. SERVICIOS Y EXÁMENES PRIORITARIOS -->
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-1">
                             2. Servicios y Exámenes Prioritarios a Promocionar *
@@ -436,7 +465,6 @@
                         <span id="servicesError" class="hidden text-xs font-semibold text-red-500 mt-2 block">Por favor ingrese al menos un servicio prioritario.</span>
                     </div>
 
-                    <!-- 3. MÉTRICAS DE ÉXITO Y EVALUACIÓN -->
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-1">
                             3. Métricas de Éxito Clave / KPIs (Evaluación a 30, 60 y 90 días) *
@@ -454,7 +482,7 @@
             </section>
 
             <!-- NAVEGACIÓN INFERIOR Y BOTONES -->
-            <div class="flex items-center justify-between pt-4">
+            <div id="navigationBar" class="flex items-center justify-between pt-4">
                 <button type="button" id="prevBtn" class="hidden px-6 py-3 rounded-xl border border-slate-300 text-slate-700 font-semibold hover:bg-slate-100 transition text-sm">
                     ← Anterior
                 </button>
@@ -463,14 +491,14 @@
                         Siguiente →
                     </button>
                     <button type="submit" id="submitBtn" class="hidden px-8 py-3 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition shadow-xl text-sm">
-                        Enviar Master Brief 🚀
+                        Finalizar y Generar PDF 🚀
                     </button>
                 </div>
             </div>
 
         </form>
 
-        <!-- MODAL DE ÉXITO Y DESCARGA DE PDF -->
+        <!-- MODAL DE ÉXITO Y CONFIRMACIÓN DE PDF -->
         <div id="successModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 z-[300] hidden">
             <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center shadow-2xl border border-slate-200 animate-fade-in space-y-4">
                 <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
@@ -478,19 +506,13 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-slate-900">¡Genial, Brief Enviado! 🎉</h3>
+                <h3 class="text-2xl font-bold text-slate-900">¡Brief Finalizado! 🎉</h3>
                 <p class="text-slate-600 text-sm leading-relaxed">
-                    Hemos recibido toda la información estratégica con éxito. Nuestro equipo revisará los datos para comenzar con el plan de marketing.
+                    Tu documento PDF ha sido exportado con éxito. Por favor, compártelo con el equipo para continuar con la estrategia.
                 </p>
-                <div class="pt-2 space-y-2">
-                    <button type="button" id="downloadPdfBtn" class="w-full py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm transition shadow-lg flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                        <span>Descargar copia en PDF</span>
-                    </button>
-                    <button type="button" onclick="window.location.reload()" class="w-full py-2.5 px-4 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-100 font-semibold text-xs transition">
-                        Cerrar ventana
+                <div class="pt-2">
+                    <button type="button" onclick="window.location.reload()" class="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition shadow-lg">
+                        Aceptar / Cerrar
                     </button>
                 </div>
             </div>
@@ -510,10 +532,8 @@
         const progressBar = document.getElementById('progressBar');
         const currentStepNum = document.getElementById('currentStepNum');
 
-        // VARIABLE MODO DESARROLLO / EDICIÓN:
         const ENABLE_VALIDATIONS = false;
 
-        // BOTONES DE VOLVER AL PASO ANTERIOR EN CADA CABECERA
         const stepBackBtns = document.querySelectorAll('.step-back-btn');
         stepBackBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -524,7 +544,6 @@
             });
         });
 
-        // HELPER GENÉRICO PARA CAMPOS AUTO-DESPLEGABLES CON VIÑETAS
         function setupDynamicBullets({ containerId, hiddenInputId, errorId, placeholders, fieldClassName }) {
             const container = document.getElementById(containerId);
             const hiddenInput = document.getElementById(hiddenInputId);
@@ -577,7 +596,6 @@
             container.appendChild(createBulletInput(0));
         }
 
-        // SECCIÓN 1: PROPUESTA DE VALOR
         setupDynamicBullets({
             containerId: 'advantagesContainer',
             hiddenInputId: 'advantagesHiddenInput',
@@ -592,7 +610,6 @@
             ]
         });
 
-        // SECCIÓN 2: PERSONALIDAD Y TONO DE COMUNICACIÓN
         setupDynamicBullets({
             containerId: 'toneContainer',
             hiddenInputId: 'toneHiddenInput',
@@ -607,7 +624,6 @@
             ]
         });
 
-        // SECCIÓN 3: RAZÓN PRINCIPAL
         setupDynamicBullets({
             containerId: 'reasonContainer',
             hiddenInputId: 'reasonHiddenInput',
@@ -621,7 +637,6 @@
             ]
         });
 
-        // SECCIÓN 3: PUNTOS DE DOLOR
         setupDynamicBullets({
             containerId: 'painContainer',
             hiddenInputId: 'painHiddenInput',
@@ -635,7 +650,6 @@
             ]
         });
 
-        // SECCIÓN 3: ACCIONES ANTERIORES
         setupDynamicBullets({
             containerId: 'previousActionsContainer',
             hiddenInputId: 'previousActionsHiddenInput',
@@ -649,7 +663,6 @@
             ]
         });
 
-        // SECCIÓN 5: LÓGICA DINÁMICA DE COMPETIDORES CON 3 VENTAJAS Y 3 DESVENTAJAS
         function setupCompetitorsComparison() {
             const container = document.getElementById('competitorsContainer');
             const hiddenInput = document.getElementById('competitorsHiddenInput');
@@ -677,34 +690,24 @@
                         <input type="text" class="competitor-name flex-1 px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm font-semibold bg-white" placeholder="${placeholderText}">
                     </div>
 
-                    <!-- CUADRO COMPARATIVO DESPLEGABLE -->
                     <div class="comparison-box hidden pt-2 space-y-3 pl-10 border-t border-slate-200/60 mt-3">
                         <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs space-y-4">
                             <label class="block text-xs font-bold text-slate-800 uppercase tracking-wider">
                                 VENTAJA COMPETITIVA Y PUNTOS A MEJORAR *
                             </label>
-                            <p class="text-xs text-slate-500">
-                                ¿En qué le ganan ustedes a esta competencia y qué cosas hace esta competencia que ustedes deberían mejorar?
-                            </p>
                             
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-                                <!-- 3 Ventajas (En qué les ganamos) -->
                                 <div class="space-y-2">
-                                    <label class="block text-xs font-bold text-emerald-700">
-                                        ¿En qué son mejores? (Nuestra ventaja)
-                                    </label>
-                                    <input type="text" class="comp-adv-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none transition text-xs" placeholder="Ventaja 1: Ej. Rapidez en la entrega de resultados">
-                                    <input type="text" class="comp-adv-2 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none transition text-xs" placeholder="Ventaja 2: Ej. Mejor atención por WhatsApp">
-                                    <input type="text" class="comp-adv-3 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none transition text-xs" placeholder="Ventaja 3: Ej. Instalaciones más modernas">
+                                    <label class="block text-xs font-bold text-emerald-700">¿En qué son mejores? (Nuestra ventaja)</label>
+                                    <input type="text" class="comp-adv-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none transition text-xs" placeholder="Ventaja 1: Ej. Rapidez en la entrega">
+                                    <input type="text" class="comp-adv-2 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none transition text-xs" placeholder="Ventaja 2: Ej. Atención por WhatsApp">
+                                    <input type="text" class="comp-adv-3 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none transition text-xs" placeholder="Ventaja 3: Ej. Instalaciones modernas">
                                 </div>
 
-                                <!-- 3 Desventajas (Qué hacen ellos mejor) -->
                                 <div class="space-y-2">
-                                    <label class="block text-xs font-bold text-amber-700">
-                                        ¿Qué hacen ellos mejor? (A mejorar)
-                                    </label>
-                                    <input type="text" class="comp-dis-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none transition text-xs" placeholder="Aspecto a mejorar 1: Ej. Promociones más agresivas">
-                                    <input type="text" class="comp-dis-2 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none transition text-xs" placeholder="Aspecto a mejorar 2: Ej. Mayor presencia en redes sociales">
+                                    <label class="block text-xs font-bold text-amber-700">¿Qué hacen ellos mejor? (A mejorar)</label>
+                                    <input type="text" class="comp-dis-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none transition text-xs" placeholder="Aspecto a mejorar 1: Ej. Promociones">
+                                    <input type="text" class="comp-dis-2 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none transition text-xs" placeholder="Aspecto a mejorar 2: Ej. Presencia en redes">
                                     <input type="text" class="comp-dis-3 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none transition text-xs" placeholder="Aspecto a mejorar 3: Ej. Mayor cantidad de sedes">
                                 </div>
                             </div>
@@ -724,6 +727,8 @@
                         if (cards[cards.length - 1] === card) {
                             container.appendChild(createCompetitorCard(cards.length));
                         }
+                    } else {
+                        card.classList.add('empty-competitor');
                     }
                     updateCompetitorsData();
                 });
@@ -744,7 +749,15 @@
                 const data = [];
 
                 cards.forEach(card => {
-                    const name = card.querySelector('.competitor-name').value.trim();
+                    const nameInput = card.querySelector('.competitor-name');
+                    const name = nameInput.value.trim();
+
+                    if (name === '') {
+                        card.classList.add('empty-competitor');
+                    } else {
+                        card.classList.remove('empty-competitor');
+                    }
+
                     const adv1 = card.querySelector('.comp-adv-1').value.trim();
                     const adv2 = card.querySelector('.comp-adv-2').value.trim();
                     const adv3 = card.querySelector('.comp-adv-3').value.trim();
@@ -774,7 +787,6 @@
 
         setupCompetitorsComparison();
 
-        // HELPER PARA CUADRANTES FODA (3 CAMPOS INICIALES, HABILITA HASTA UN 4° MÁXIMO)
         function setupFodaQuadrant({ containerId, hiddenInputId, errorId, placeholders, fieldClass }) {
             const container = document.getElementById(containerId);
             const hiddenInput = document.getElementById(hiddenInputId);
@@ -831,7 +843,6 @@
             }
         }
 
-        // INICIALIZACIÓN DE LOS 4 CUADRANTES FODA
         setupFodaQuadrant({
             containerId: 'fortalezasContainer',
             hiddenInputId: 'fortalezasHiddenInput',
@@ -884,7 +895,6 @@
             ]
         });
 
-        // SECCIÓN 8: SERVICIOS Y EXÁMENES PRIORITARIOS
         setupDynamicBullets({
             containerId: 'servicesContainer',
             hiddenInputId: 'servicesHiddenInput',
@@ -899,7 +909,6 @@
             ]
         });
 
-        // SECCIÓN 8: MÉTRICAS DE ÉXITO (KPIs)
         setupDynamicBullets({
             containerId: 'metricsContainer',
             hiddenInputId: 'metricsHiddenInput',
@@ -914,7 +923,6 @@
             ]
         });
 
-        // LÓGICA DE NAVEGACIÓN PASO A PASO
         function updateStep(step) {
             sections.forEach(sec => {
                 if (parseInt(sec.dataset.step) === step) {
@@ -974,53 +982,24 @@
             }
         });
 
-        // MANEJO DE ENVÍO POR CORREO (FORMSPREE AJAX) Y GENERACIÓN DE PDF
+        // MANEJO DE IMPRESIÓN Y EXPORTACIÓN A PDF PERFECTA NATIVA
         const briefForm = document.getElementById('briefForm');
         const successModal = document.getElementById('successModal');
-        const downloadPdfBtn = document.getElementById('downloadPdfBtn');
 
-        briefForm.addEventListener('submit', async (e) => {
+        briefForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const submitBtnNode = document.getElementById('submitBtn');
-            submitBtnNode.disabled = true;
-            submitBtnNode.innerText = "Enviando...";
-
-            const formData = new FormData(briefForm);
-            try {
-                const response = await fetch(briefForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    successModal.classList.remove('hidden');
-                } else {
-                    alert('Ocurrió un detalle al enviar el formulario. Intenta nuevamente.');
-                }
-            } catch (error) {
-                alert('Error de conexión al enviar el brief.');
-            } finally {
-                submitBtnNode.disabled = false;
-                submitBtnNode.innerText = "Enviar Master Brief 🚀";
-            }
-        });
-
-        downloadPdfBtn.addEventListener('click', () => {
+            // 1. Desplegar temporalmente todas las secciones para la impresión
             sections.forEach(sec => sec.classList.remove('hidden'));
 
-            const opt = {
-                margin:       0.5,
-                filename:     'Master_Brief_Estrategico.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 },
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-            };
+            // 2. Ejecutar la impresión nativa del navegador (Guardar como PDF)
+            window.print();
 
-            html2pdf().set(opt).from(briefForm).save().then(() => {
+            // 3. Al cerrar el cuadro de diálogo de impresión, restaurar paso actual y desplegar modal
+            setTimeout(() => {
                 updateStep(currentStep);
-            });
+                successModal.classList.remove('hidden');
+            }, 300);
         });
     </script>
 </body>
