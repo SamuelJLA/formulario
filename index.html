@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Brief: Diagnóstico Estratégico y Marketing Digital</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- html2pdf CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Header / Banner -->
+    <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-50 backdrop-blur-md bg-slate-900/90">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-brand-500/10 rounded-lg border border-brand-500/20 text-brand-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-white">MASTER BRIEF ESTRATÉGICO</h1>
+                    <p class="text-xs text-slate-400">Diagnóstico de Empresa & Marketing Digital</p>
+                </div>
+            </div>
+            <div class="text-xs font-medium text-slate-400 bg-slate-800 px-3 py-1.5 rounded-full border border-slate-700">
+                Paso <span id="currentStepNum">1</span> de 8
+            </div>
+        </div>
+        <!-- Progress Bar -->
+        <div class="w-full bg-slate-800 h-1.5">
+            <div id="progressBar" class="bg-brand-500 h-1.5 transition-all duration-300 ease-out" style="width: 12.5%;"></div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+
+        <!-- FORMULARIO -->
+        <form id="briefForm" action="https://formspree.io/f/xqpzdpyk" method="POST" class="space-y-8">
+
+            <!-- SECCIÓN 1 -->
+            <section class="step-section bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" data-step="1">
+                
+                <!-- Welcome Card (Solo en el paso 1) -->
+                <div id="welcomeCard" class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm mb-8 bg-slate-50/50">
+                    <div class="inline-block px-3 py-1 bg-brand-50 text-brand-700 text-xs font-semibold rounded-full border border-brand-100 mb-3">
+                        Diagnóstico de Marca & Estrategia Digital
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-3">Diagnóstico Estratégico y Objetivos de Negocio</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-5">
+                        Este formulario tiene como objetivo analizar a profundidad la situación actual de la empresa y definir el objetivo real a alcanzar. A través de este diagnóstico, se construirá la base fundamental para diseñar e implementar una estrategia de marketing digital altamente efectiva.
+                    </p>
+                    <div class="flex items-center space-x-3 text-xs font-medium text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <svg class="w-5 h-5 text-brand-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>La precisión de este diagnóstico determinará la efectividad de la estrategia. Tómese el tiempo necesario para detallar cada punto.</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
+                    <span class="w-8 h-8 flex items-center justify-center bg-brand-500 text-white rounded-full font-bold text-sm">1</span>
+                    <h3 class="text-xl font-bold text-slate-900">Datos Fundamentales de la Empresa</h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Nombre Comercial y Razón Social *</label>
+                        <input type="text" name="1_nombre_empresa" placeholder="Ej: Laboratorio BioSalud C.A." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Persona de Contacto / Cargo *</label>
+                        <input type="text" name="1_contacto" placeholder="Ej: Dra. María Pérez / Directora Médica" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Historia Breve</label>
+                        <textarea name="1_historia" rows="3" placeholder="¿Cómo y cuándo nació el laboratorio?" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Misión</label>
+                        <textarea name="1_mision" rows="3" placeholder="¿Qué hacen hoy por la salud de la gente y cómo lo hacen?" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Visión</label>
+                        <textarea name="1_vision" rows="3" placeholder="¿Dónde ven al laboratorio en los próximos 3 a 5 años?" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                    </div>
+
+                    <!-- PROPUESTA DE VALOR -->
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">
+                            Propuesta de valor (¿Qué le ofrece al paciente para que lo elija?) *
+                        </label>
+                        <p class="text-xs text-slate-500 mb-3">
+                            Ejemplos: Rapidez en resultados, precisión, tecnología de punta, empatía en la atención, etc.
+                        </p>
+                        
+                        <div id="advantagesContainer" class="space-y-3"></div>
+
+                        <input type="hidden" name="1_ventaja_diferenciadora_lista" id="advantagesHiddenInput">
+                        <span id="advantagesError" class="hidden text-xs font-semibold text-red-500 mt-2 block">Por favor complete al menos una propuesta de valor.</span>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Aspectos Legales a Considerar</label>
+                        <textarea name="1_legales" rows="2" placeholder="Permisos de salud, ley del ejercicio de bioanálisis, regulaciones de ofertas médicas..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2: IDENTIDAD, PERCEPCIÓN Y PERSONALIDAD DE MARCA -->
+            <section class="step-section hidden bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" data-step="2">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-8 h-8 flex items-center justify-center bg-brand-500 text-white rounded-full font-bold text-sm">2</span>
+                        <h3 class="text-xl font-bold text-slate-900">Identidad, Percepción y Personalidad de Marca</h3>
+                    </div>
+                    <button type="button" class="step-back-btn flex items-center space-x-1 text-xs font-semibold text-slate-500 hover:text-brand-600 bg-slate-100 hover:bg-brand-50 px-3 py-1.5 rounded-lg transition border border-slate-200">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        <span>Volver al paso 1</span>
+                    </button>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Percepción Actual *</label>
+                            <textarea name="2_percepcion_actual" rows="3" placeholder="¿Cómo cree que lo ven los pacientes hoy en día? (Ej: Un laboratorio tradicional, poco conocido en redes, rápido pero costoso...)" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Percepción Deseada *</label>
+                            <textarea name="2_percepcion_deseada" rows="3" placeholder="¿Cómo quiere que lo recuerden? (Ej: El laboratorio más moderno y confiable de la ciudad, los más amables y tecnológicos...)" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Frase de Recomendación Boca a Boca -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">Frase de Recomendación Ideal ("Boca a Boca") *</label>
+                        <p class="text-xs text-slate-500 mb-2">Si un paciente lo recomienda a un familiar, ¿qué frase exacta le gustaría que dijera?</p>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 font-serif text-lg">“</span>
+                            <input type="text" name="2_frase_ideal" placeholder="Ej: Ve allá porque entregan súper rápido y el trato es impecable" class="w-full pl-8 pr-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Personalidad y Tono de Comunicación (Dinámico con Viñetas) -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">
+                            Personalidad y Tono de Comunicación *
+                        </label>
+                        <p class="text-xs text-slate-500 mb-3">
+                            Si el laboratorio fuera una persona, ¿cómo hablaría? (Ej: Empático y cercano, Técnico y científico, Formal y respetuoso, Moderno, etc.)
+                        </p>
+                        
+                        <div id="toneContainer" class="space-y-3"></div>
+
+                        <input type="hidden" name="2_tono_seleccionado_lista" id="toneHiddenInput">
+                        <span id="toneError" class="hidden text-xs font-semibold text-red-500 mt-2 block">Por favor complete al menos un atributo de personalidad o tono.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3: CONTEXTO Y SITUACIÓN ACTUAL -->
+            <section class="step-section hidden bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" data-step="3">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-8 h-8 flex items-center justify-center bg-brand-500 text-white rounded-full font-bold text-sm">3</span>
+                        <h3 class="text-xl font-bold text-slate-900">Contexto y Situación Actual</h3>
+                    </div>
+                    <button type="button" class="step-back-btn flex items-center space-x-1 text-xs font-semibold text-slate-500 hover:text-brand-600 bg-slate-100 hover:bg-brand-50 px-3 py-1.5 rounded-lg transition border border-slate-200">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        <span>Volver al paso 2</span>
+                    </button>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">
+                            ¿Cuál es la razón principal por la que se decidió activar esta estrategia hoy? *
+                        </label>
+                        <p class="text-xs text-slate-500 mb-3">
+                            Indique los motivos principales que impulsan la necesidad de la estrategia.
+                        </p>
+                        <div id="reasonContainer" class="space-y-3"></div>
+                        <input type="hidden" name="3_razon_principal_lista" id="reasonHiddenInput">
+                        <span id="reasonError" class="hidden text-xs font-semibold text-red-500 mt-2 block">Por favor complete al menos una razón principal.</span>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">
+                            ¿Qué es lo que más le está costando al laboratorio en este momento? *
+                        </label>
+                        <p class="text-xs text-slate-500 mb-3">
+                            Mencione los principales obstaculos, fricciones o problemas comerciales actuales.
+                        </p>
+                        <div id="painContainer" class="space-y-3"></div>
+                        <input type="hidden" name="3_puntos_dolor_lista" id="painHiddenInput">
+                        <span id="painError" class="hidden text-xs font-semibold text-red-500 mt-2 block">Por favor complete al menos un punto de dolor.</span>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">
+                            ¿Qué se ha intentado antes en publicidad o redes y qué resultados se obtuvieron?
+                        </label>
+                        <p class="text-xs text-slate-500 mb-3">
+                            Detalle campañas, estrategias o canales probados previamente y su desempeño.
+                        </p>
+                        <div id="previousActionsContainer" class="space-y-3"></div>
+                        <input type="hidden" name="3_acciones_anteriores_lista" id="previousActionsHiddenInput">
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4: PÚBLICO OBJETIVO (PACIENTE IDEAL) -->
+            <section class="step-section hidden bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" data-step="4">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-8 h-8 flex items-center justify-center bg-brand-500 text-white rounded-full font-bold text-sm">4</span>
+                        <h3 class="text-xl font-bold text-slate-900">Público Objetivo (Paciente Ideal)</h3>
+                    </div>
+                    <button type="button" class="step-back-btn flex items-center space-x-1 text-xs font-semibold text-slate-500 hover:text-brand-600 bg-slate-100 hover:bg-brand-50 px-3 py-1.5 rounded-lg transition border border-slate-200">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        <span>Volver al paso 3</span>
+                    </button>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- PERFIL DEMOGRÁFICO -->
+                    <div class="space-y-4">
+                        <h4 class="text-md font-bold text-slate-800 border-b border-slate-200 pb-1">Perfil Demográfico:</h4>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">¿Dónde se encuentran los pacientes a los que quieren llegar? *</label>
+                            <textarea name="4_ubicacion_objetivo" rows="2" placeholder="Ej: Queremos captar pacientes en Altamira, Los Palos Grandes, Chacao y zonas aledañas..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">¿De qué zonas reciben más pacientes actualmente?</label>
+                            <textarea name="4_zonas_actuales" rows="2" placeholder="Ej: Actualmente la mayoría de nuestros pacientes vienen de El Recreo, Sabana Grande y La California..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- PERFIL PSICOGRÁFICO Y COMPORTAMIENTO -->
+                    <div class="space-y-4 pt-2">
+                        <h4 class="text-md font-bold text-slate-800 border-b border-slate-200 pb-1">Perfil Psicográfico y Comportamiento:</h4>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">¿Quién toma la decisión de ir al laboratorio?</label>
+                            <textarea name="4_tomador_decision" rows="3" placeholder="Ej: La madre que cuida la salud de la familia, el adulto joven que necesita exámenes preempleo, la persona mayor con control de patologías." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">¿Qué buscan cuando van a un laboratorio?</label>
+                            <textarea name="4_factores_busqueda" rows="3" placeholder="Ej: Cercanía, economía, facilidades de pago como Cashea, confianza en el diagnóstico." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5: COMPETENCIA Y ENTORNO -->
+            <section class="step-section hidden bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" data-step="5">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-8 h-8 flex items-center justify-center bg-brand-500 text-white rounded-full font-bold text-sm">5</span>
+                        <h3 class="text-xl font-bold text-slate-900">Competencia y Entorno</h3>
+                    </div>
+                    <button type="button" class="step-back-btn flex items-center space-x-1 text-xs font-semibold text-slate-500 hover:text-brand-600 bg-slate-100 hover:bg-brand-50 px-3 py-1.5 rounded-lg transition border border-slate-200">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        <span>Volver al paso 4</span>
+                    </button>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-4">
+                            Competidores directos y análisis comparativo *
+                        </label>
+
+                        <!-- Contenedor dinámico de competidores con sus cuadros comparativos de 3 ventajas y 3 desventajas -->
+                        <div id="competitorsContainer" class="space-y-4"></div>
+
+                        <input type="hidden" name="5_analisis_competencia_json" id="competitorsHiddenInput">
+                        <span id="competitorsError" class="hidden text-xs font-semibold text-red-500 mt-2 block">Por favor agregue al menos un competidor.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 6: MATRIZ FODA -->
+            <section class="step-section hidden bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" data-step="6">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-8 h-8 flex items-center justify-center bg-brand-500 text-white rounded-full font-bold text-sm">6</span>
+                        <h3 class="text-xl font-bold text-slate-900">Matriz FODA (Diagnóstico Interno y Externo)</h3>
+                    </div>
+                    <button type="button" class="step-back-btn flex items-center space-x-1 text-xs font-semibold text-slate-500 hover:text-brand-600 bg-slate-100 hover:bg-brand-50 px-3 py-1.5 rounded-lg transition border border-slate-200">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        <span>Volver al paso 5</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- FORTALEZAS -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                        <label class="block text-sm font-bold text-emerald-800">
+                            Fortalezas (Internas) *
+                        </label>
+                        <p class="text-xs text-slate-500">¿Cuáles son las mayores virtudes o ventajas internas de la empresa?</p>
+                        <div id="fortalezasContainer" class="space-y-2"></div>
+                        <input type="hidden" name="6_fortalezas_lista" id="fortalezasHiddenInput">
+                        <span id="fortalezasError" class="hidden text-xs font-semibold text-red-500 mt-1 block">Ingrese al menos una fortaleza.</span>
+                    </div>
+
+                    <!-- OPORTUNIDADES -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                        <label class="block text-sm font-bold text-blue-800">
+                            Oportunidades (Externas) *
+                        </label>
+                        <p class="text-xs text-slate-500">¿Qué factores del entorno pueden aprovechar para crecer?</p>
+                        <div id="oportunidadesContainer" class="space-y-2"></div>
+                        <input type="hidden" name="6_oportunidades_lista" id="oportunidadesHiddenInput">
+                        <span id="oportunidadesError" class="hidden text-xs font-semibold text-red-500 mt-1 block">Ingrese al menos una oportunidad.</span>
+                    </div>
+
+                    <!-- DEBILIDADES -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                        <label class="block text-sm font-bold text-amber-800">
+                            Debilidades (Internas) *
+                        </label>
+                        <p class="text-xs text-slate-500">¿Qué limitaciones internas frenan o dificultan el crecimiento?</p>
+                        <div id="debilidadesContainer" class="space-y-2"></div>
+                        <input type="hidden" name="6_debilidades_lista" id="debilidadesHiddenInput">
+                        <span id="debilidadesError" class="hidden text-xs font-semibold text-red-500 mt-1 block">Ingrese al menos una debilidad.</span>
+                    </div>
+
+                    <!-- AMENAZAS -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                        <label class="block text-sm font-bold text-rose-800">
+                            Amenazas (Externas) *
+                        </label>
+                        <p class="text-xs text-slate-500">¿Qué riesgos del entorno o competencia representan un peligro?</p>
+                        <div id="amenazasContainer" class="space-y-2"></div>
+                        <input type="hidden" name="6_amenazas_lista" id="amenazasHiddenInput">
+                        <span id="amenazasError" class="hidden text-xs font-semibold text-red-500 mt-1 block">Ingrese al menos una amenaza.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 7: PRESUPUESTO Y RECURSOS -->
+            <section class="step-section hidden bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" data-step="7">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-8 h-8 flex items-center justify-center bg-brand-500 text-white rounded-full font-bold text-sm">7</span>
+                        <h3 class="text-xl font-bold text-slate-900">Presupuesto y Recursos Disponibles</h3>
+                    </div>
+                    <button type="button" class="step-back-btn flex items-center space-x-1 text-xs font-semibold text-slate-500 hover:text-brand-600 bg-slate-100 hover:bg-brand-50 px-3 py-1.5 rounded-lg transition border border-slate-200">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        <span>Volver al paso 6</span>
+                    </button>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">¿Cuál es el presupuesto mensual estimado para pauta publicitaria (Meta Ads)? *</label>
+                        <input type="text" name="7_presupuesto_pauta" placeholder="Ej: $150 - $300 USD mensuales para publicidad activa" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">¿Con qué recursos, espacios o disponibilidad de personal se cuenta para la creación de contenido?</label>
+                        <textarea name="7_recursos_audiovisuales" rows="3" placeholder="Ej: Instalaciones iluminadas para fotos/videos, disposición de la bioanalista para grabar explicaciones breves, smartphone con buena cámara." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 8: DESGLOSE DEL PROYECTO (OBJETIVOS COMERCIALES Y DE MARKETING) -->
+            <section class="step-section hidden bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm" data-step="8">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-8 h-8 flex items-center justify-center bg-brand-500 text-white rounded-full font-bold text-sm">8</span>
+                        <h3 class="text-xl font-bold text-slate-900">Desglose del Proyecto: Objetivos Comerciales y de Marketing</h3>
+                    </div>
+                    <button type="button" class="step-back-btn flex items-center space-x-1 text-xs font-semibold text-slate-500 hover:text-brand-600 bg-slate-100 hover:bg-brand-50 px-3 py-1.5 rounded-lg transition border border-slate-200">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        <span>Volver al paso 7</span>
+                    </button>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- 1. OBJETIVO MACRO -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">
+                            1. Objetivo Principal de Negocio (Macro) *
+                        </label>
+                        <p class="text-xs text-slate-500 mb-2">
+                            ¿Cuál es la meta comercial principal que esperan alcanzar en los próximos 3 a 6 meses?
+                        </p>
+                        <textarea name="8_objetivo_macro" rows="2" placeholder="Ej: Incrementar la facturación mensual en un 30% o llenar la capacidad de atención de la sede durante las mañanas..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                    </div>
+
+                    <!-- 2. SERVICIOS Y EXÁMENES PRIORITARIOS -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">
+                            2. Servicios y Exámenes Prioritarios a Promocionar *
+                        </label>
+                        <p class="text-xs text-slate-500 mb-3">
+                            Mencione los exámenes o perfiles clave en los que se debe enfocar la estrategia de comunicación y pauta.
+                        </p>
+
+                        <div id="servicesContainer" class="space-y-3"></div>
+
+                        <input type="hidden" name="8_servicios_prioritarios_lista" id="servicesHiddenInput">
+                        <span id="servicesError" class="hidden text-xs font-semibold text-red-500 mt-2 block">Por favor ingrese al menos un servicio prioritario.</span>
+                    </div>
+
+                    <!-- 3. MÉTRICAS DE ÉXITO Y EVALUACIÓN -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">
+                            3. Métricas de Éxito Clave / KPIs (Evaluación a 30, 60 y 90 días) *
+                        </label>
+                        <p class="text-xs text-slate-500 mb-3">
+                            ¿A través de qué indicadores específicos medirán el éxito de la campaña al revisar los reportes periódicos?
+                        </p>
+
+                        <div id="metricsContainer" class="space-y-3"></div>
+
+                        <input type="hidden" name="8_metricas_exito_lista" id="metricsHiddenInput">
+                        <span id="metricsError" class="hidden text-xs font-semibold text-red-500 mt-2 block">Por favor ingrese al menos una métrica de éxito.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NAVEGACIÓN INFERIOR Y BOTONES -->
+            <div class="flex items-center justify-between pt-4">
+                <button type="button" id="prevBtn" class="hidden px-6 py-3 rounded-xl border border-slate-300 text-slate-700 font-semibold hover:bg-slate-100 transition text-sm">
+                    ← Anterior
+                </button>
+                <div class="ml-auto flex items-center space-x-4">
+                    <button type="button" id="nextBtn" class="px-6 py-3 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 transition shadow-lg shadow-brand-500/20 text-sm">
+                        Siguiente →
+                    </button>
+                    <button type="submit" id="submitBtn" class="hidden px-8 py-3 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition shadow-xl text-sm">
+                        Enviar Master Brief 🚀
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+        <!-- MODAL DE ÉXITO Y DESCARGA DE PDF -->
+        <div id="successModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 z-[300] hidden">
+            <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center shadow-2xl border border-slate-200 animate-fade-in space-y-4">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900">¡Genial, Brief Enviado! 🎉</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Hemos recibido toda la información estratégica con éxito. Nuestro equipo revisará los datos para comenzar con el plan de marketing.
+                </p>
+                <div class="pt-2 space-y-2">
+                    <button type="button" id="downloadPdfBtn" class="w-full py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm transition shadow-lg flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <span>Descargar copia en PDF</span>
+                    </button>
+                    <button type="button" onclick="window.location.reload()" class="w-full py-2.5 px-4 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-100 font-semibold text-xs transition">
+                        Cerrar ventana
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JS de Navegación y Lógica Dinámica -->
+    <script>
+        let currentStep = 1;
+        const totalSteps = 8;
+
+        const sections = document.querySelectorAll('.step-section');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const progressBar = document.getElementById('progressBar');
+        const currentStepNum = document.getElementById('currentStepNum');
+
+        // VARIABLE MODO DESARROLLO / EDICIÓN:
+        const ENABLE_VALIDATIONS = false;
+
+        // BOTONES DE VOLVER AL PASO ANTERIOR EN CADA CABECERA
+        const stepBackBtns = document.querySelectorAll('.step-back-btn');
+        stepBackBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateStep(currentStep);
+                }
+            });
+        });
+
+        // HELPER GENÉRICO PARA CAMPOS AUTO-DESPLEGABLES CON VIÑETAS
+        function setupDynamicBullets({ containerId, hiddenInputId, errorId, placeholders, fieldClassName }) {
+            const container = document.getElementById(containerId);
+            const hiddenInput = document.getElementById(hiddenInputId);
+            const errorElement = errorId ? document.getElementById(errorId) : null;
+
+            function createBulletInput(index) {
+                const div = document.createElement('div');
+                div.className = 'flex items-center gap-3 transition-all duration-300 opacity-0 transform translate-y-2';
+                
+                const placeholderText = placeholders[index] || placeholders[placeholders.length - 1];
+                
+                div.innerHTML = `
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-500 shrink-0 ml-1"></span>
+                    <input type="text" class="${fieldClassName} flex-1 px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm" placeholder="${placeholderText}">
+                `;
+                
+                const input = div.querySelector('input');
+                input.addEventListener('input', handleInput);
+
+                setTimeout(() => {
+                    div.classList.remove('opacity-0', 'translate-y-2');
+                }, 50);
+
+                return div;
+            }
+
+            function handleInput() {
+                const fields = container.querySelectorAll('.' + fieldClassName);
+                const lastField = fields[fields.length - 1];
+                
+                if (lastField && lastField.value.trim() !== '') {
+                    container.appendChild(createBulletInput(fields.length));
+                }
+                
+                updateHiddenValue();
+            }
+
+            function updateHiddenValue() {
+                const fields = container.querySelectorAll('.' + fieldClassName);
+                const values = Array.from(fields)
+                    .map(input => input.value.trim())
+                    .filter(val => val !== '');
+                    
+                hiddenInput.value = values.join(' | ');
+                if (errorElement && values.length > 0) {
+                    errorElement.classList.add('hidden');
+                }
+            }
+
+            container.appendChild(createBulletInput(0));
+        }
+
+        // SECCIÓN 1: PROPUESTA DE VALOR
+        setupDynamicBullets({
+            containerId: 'advantagesContainer',
+            hiddenInputId: 'advantagesHiddenInput',
+            errorId: 'advantagesError',
+            fieldClassName: 'advantage-field',
+            placeholders: [
+                "Ej: Entrega de resultados en menos de 4 horas",
+                "Ej: Equipos de última tecnología y alta precisión",
+                "Ej: Atención personalizada y empática sin esperas",
+                "Ej: Facilidades de pago y cotización inmediata por WhatsApp",
+                "Escribe otra propuesta de valor..."
+            ]
+        });
+
+        // SECCIÓN 2: PERSONALIDAD Y TONO DE COMUNICACIÓN
+        setupDynamicBullets({
+            containerId: 'toneContainer',
+            hiddenInputId: 'toneHiddenInput',
+            errorId: 'toneError',
+            fieldClassName: 'tone-field',
+            placeholders: [
+                "Ej: Empático, cálido y cercano al paciente",
+                "Ej: Técnico, profesional y con rigor científico",
+                "Ej: Innovador, moderno y apoyado en la tecnología",
+                "Ej: Transparente, directo y sin rodeos",
+                "Escribe otro atributo de personalidad..."
+            ]
+        });
+
+        // SECCIÓN 3: RAZÓN PRINCIPAL
+        setupDynamicBullets({
+            containerId: 'reasonContainer',
+            hiddenInputId: 'reasonHiddenInput',
+            errorId: 'reasonError',
+            fieldClassName: 'reason-field',
+            placeholders: [
+                "Ej: Cifras de facturación estancadas",
+                "Ej: Campañas de anuncios previas sin resultados",
+                "Ej: Baja afluencia de pacientes en caja durante la semana",
+                "Escribe otra razón principal..."
+            ]
+        });
+
+        // SECCIÓN 3: PUNTOS DE DOLOR
+        setupDynamicBullets({
+            containerId: 'painContainer',
+            hiddenInputId: 'painHiddenInput',
+            errorId: 'painError',
+            fieldClassName: 'pain-field',
+            placeholders: [
+                "Ej: Los pacientes cotizan por WhatsApp pero no asisten a la sede",
+                "Ej: La competencia ofrece precios muy agresivos y promociones",
+                "Ej: Cuesta transmitir confianza en exámenes especializados",
+                "Escribe otro punto de dolor..."
+            ]
+        });
+
+        // SECCIÓN 3: ACCIONES ANTERIORES
+        setupDynamicBullets({
+            containerId: 'previousActionsContainer',
+            hiddenInputId: 'previousActionsHiddenInput',
+            errorId: null,
+            fieldClassName: 'prev-action-field',
+            placeholders: [
+                "Ej: Se pautó en Instagram pero no llegaron ventas directas",
+                "Ej: Se repartieron volantes impresos cerca de la clínica",
+                "Ej: Se manejaba la cuenta internamente sin pauta pagada",
+                "Escribe otra acción anterior..."
+            ]
+        });
+
+        // SECCIÓN 5: LÓGICA DINÁMICA DE COMPETIDORES CON 3 VENTAJAS Y 3 DESVENTAJAS
+        function setupCompetitorsComparison() {
+            const container = document.getElementById('competitorsContainer');
+            const hiddenInput = document.getElementById('competitorsHiddenInput');
+            const errorElement = document.getElementById('competitorsError');
+
+            const placeholders = [
+                "Ej: Tu Salud Chacao",
+                "Ej: Centro Médico La Fe",
+                "Ej: Laboratorio Clínico Central",
+                "Escribe otro competidor..."
+            ];
+
+            function createCompetitorCard(index) {
+                const itemNumber = index + 1;
+                const placeholderText = placeholders[index] || placeholders[placeholders.length - 1];
+
+                const card = document.createElement('div');
+                card.className = 'competitor-card bg-slate-50 p-4 rounded-xl border border-slate-200 transition-all duration-300 opacity-0 transform translate-y-2 space-y-3';
+                
+                card.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-full bg-brand-500 text-white font-bold text-xs flex items-center justify-center shrink-0">
+                            ${itemNumber}
+                        </span>
+                        <input type="text" class="competitor-name flex-1 px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm font-semibold bg-white" placeholder="${placeholderText}">
+                    </div>
+
+                    <!-- CUADRO COMPARATIVO DESPLEGABLE -->
+                    <div class="comparison-box hidden pt-2 space-y-3 pl-10 border-t border-slate-200/60 mt-3">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs space-y-4">
+                            <label class="block text-xs font-bold text-slate-800 uppercase tracking-wider">
+                                VENTAJA COMPETITIVA Y PUNTOS A MEJORAR *
+                            </label>
+                            <p class="text-xs text-slate-500">
+                                ¿En qué le ganan ustedes a esta competencia y qué cosas hace esta competencia que ustedes deberían mejorar?
+                            </p>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                                <!-- 3 Ventajas (En qué les ganamos) -->
+                                <div class="space-y-2">
+                                    <label class="block text-xs font-bold text-emerald-700">
+                                        ¿En qué son mejores? (Nuestra ventaja)
+                                    </label>
+                                    <input type="text" class="comp-adv-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none transition text-xs" placeholder="Ventaja 1: Ej. Rapidez en la entrega de resultados">
+                                    <input type="text" class="comp-adv-2 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none transition text-xs" placeholder="Ventaja 2: Ej. Mejor atención por WhatsApp">
+                                    <input type="text" class="comp-adv-3 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none transition text-xs" placeholder="Ventaja 3: Ej. Instalaciones más modernas">
+                                </div>
+
+                                <!-- 3 Desventajas (Qué hacen ellos mejor) -->
+                                <div class="space-y-2">
+                                    <label class="block text-xs font-bold text-amber-700">
+                                        ¿Qué hacen ellos mejor? (A mejorar)
+                                    </label>
+                                    <input type="text" class="comp-dis-1 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none transition text-xs" placeholder="Aspecto a mejorar 1: Ej. Promociones más agresivas">
+                                    <input type="text" class="comp-dis-2 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none transition text-xs" placeholder="Aspecto a mejorar 2: Ej. Mayor presencia en redes sociales">
+                                    <input type="text" class="comp-dis-3 w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none transition text-xs" placeholder="Aspecto a mejorar 3: Ej. Mayor cantidad de sedes">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                const nameInput = card.querySelector('.competitor-name');
+                const comparisonBox = card.querySelector('.comparison-box');
+                const allInputs = card.querySelectorAll('input[type="text"]');
+
+                nameInput.addEventListener('input', () => {
+                    if (nameInput.value.trim() !== '') {
+                        comparisonBox.classList.remove('hidden');
+                        
+                        const cards = container.querySelectorAll('.competitor-card');
+                        if (cards[cards.length - 1] === card) {
+                            container.appendChild(createCompetitorCard(cards.length));
+                        }
+                    }
+                    updateCompetitorsData();
+                });
+
+                allInputs.forEach(input => {
+                    input.addEventListener('input', updateCompetitorsData);
+                });
+
+                setTimeout(() => {
+                    card.classList.remove('opacity-0', 'translate-y-2');
+                }, 50);
+
+                return card;
+            }
+
+            function updateCompetitorsData() {
+                const cards = container.querySelectorAll('.competitor-card');
+                const data = [];
+
+                cards.forEach(card => {
+                    const name = card.querySelector('.competitor-name').value.trim();
+                    const adv1 = card.querySelector('.comp-adv-1').value.trim();
+                    const adv2 = card.querySelector('.comp-adv-2').value.trim();
+                    const adv3 = card.querySelector('.comp-adv-3').value.trim();
+
+                    const dis1 = card.querySelector('.comp-dis-1').value.trim();
+                    const dis2 = card.querySelector('.comp-dis-2').value.trim();
+                    const dis3 = card.querySelector('.comp-dis-3').value.trim();
+
+                    if (name !== '') {
+                        data.push({
+                            competidor: name,
+                            nuestras_ventajas: [adv1, adv2, adv3].filter(Boolean),
+                            aspectos_a_mejorar: [dis1, dis2, dis3].filter(Boolean)
+                        });
+                    }
+                });
+
+                hiddenInput.value = data.length > 0 ? JSON.stringify(data) : '';
+
+                if (errorElement && data.length > 0) {
+                    errorElement.classList.add('hidden');
+                }
+            }
+
+            container.appendChild(createCompetitorCard(0));
+        }
+
+        setupCompetitorsComparison();
+
+        // HELPER PARA CUADRANTES FODA (3 CAMPOS INICIALES, HABILITA HASTA UN 4° MÁXIMO)
+        function setupFodaQuadrant({ containerId, hiddenInputId, errorId, placeholders, fieldClass }) {
+            const container = document.getElementById(containerId);
+            const hiddenInput = document.getElementById(hiddenInputId);
+            const errorElement = errorId ? document.getElementById(errorId) : null;
+            const maxItems = 4;
+
+            function createInput(index) {
+                const itemNum = index + 1;
+                const placeholderText = placeholders[index] || placeholders[placeholders.length - 1];
+
+                const div = document.createElement('div');
+                div.className = 'flex items-center gap-2 transition-all duration-300 opacity-0 transform translate-y-1';
+                div.innerHTML = `
+                    <span class="w-5 h-5 rounded-full bg-slate-300 text-slate-700 font-bold text-[10px] flex items-center justify-center shrink-0">${itemNum}</span>
+                    <input type="text" class="${fieldClass} flex-1 px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none transition text-xs bg-white" placeholder="${placeholderText}">
+                `;
+
+                const input = div.querySelector('input');
+                input.addEventListener('input', handleInput);
+
+                setTimeout(() => {
+                    div.classList.remove('opacity-0', 'translate-y-1');
+                }, 30);
+
+                return div;
+            }
+
+            function handleInput() {
+                const inputs = container.querySelectorAll('.' + fieldClass);
+                const count = inputs.length;
+
+                if (count === 3 && inputs[2].value.trim() !== '' && count < maxItems) {
+                    container.appendChild(createInput(3));
+                }
+
+                updateHiddenValue();
+            }
+
+            function updateHiddenValue() {
+                const inputs = container.querySelectorAll('.' + fieldClass);
+                const values = Array.from(inputs)
+                    .map(i => i.value.trim())
+                    .filter(v => v !== '');
+
+                hiddenInput.value = values.join(' | ');
+
+                if (errorElement && values.length > 0) {
+                    errorElement.classList.add('hidden');
+                }
+            }
+
+            for (let i = 0; i < 3; i++) {
+                container.appendChild(createInput(i));
+            }
+        }
+
+        // INICIALIZACIÓN DE LOS 4 CUADRANTES FODA
+        setupFodaQuadrant({
+            containerId: 'fortalezasContainer',
+            hiddenInputId: 'fortalezasHiddenInput',
+            errorId: 'fortalezasError',
+            fieldClass: 'foda-fort-field',
+            placeholders: [
+                "Fortaleza 1: Ej. Equipos automatizados de alta tecnología",
+                "Fortaleza 2: Ej. Ubicación céntrica y de fácil acceso",
+                "Fortaleza 3: Ej. Personal bioanalista con más de 10 años de experiencia",
+                "Fortaleza 4: Escriba otra fortaleza..."
+            ]
+        });
+
+        setupFodaQuadrant({
+            containerId: 'oportunidadesContainer',
+            hiddenInputId: 'oportunidadesHiddenInput',
+            errorId: 'oportunidadesError',
+            fieldClass: 'foda-opor-field',
+            placeholders: [
+                "Oportunidad 1: Ej. Alianzas estratégicas con médicos de la zona",
+                "Oportunidad 2: Ej. Implementación de financiamiento con Cashea",
+                "Oportunidad 3: Ej. Envío automatizado de resultados por WhatsApp",
+                "Oportunidad 4: Escriba otra oportunidad..."
+            ]
+        });
+
+        setupFodaQuadrant({
+            containerId: 'debilidadesContainer',
+            hiddenInputId: 'debilidadesHiddenInput',
+            errorId: 'debilidadesError',
+            fieldClass: 'foda-deb-field',
+            placeholders: [
+                "Debilidad 1: Ej. Tiempos de respuesta lentos en atención por WhatsApp",
+                "Debilidad 2: Ej. Falta de material audiovisual propio para redes sociales",
+                "Debilidad 3: Ej. Marca poco posicionada en el público joven",
+                "Debilidad 4: Escriba otra debilidad..."
+            ]
+        });
+
+        setupFodaQuadrant({
+            containerId: 'amenazasContainer',
+            hiddenInputId: 'amenazasHiddenInput',
+            errorId: 'amenazasError',
+            fieldClass: 'foda-ame-field',
+            placeholders: [
+                "Amenaza 1: Ej. Guerra de precios por laboratorios informales",
+                "Amenaza 2: Ej. Apertura de nuevas sedes de competidores cercanos",
+                "Amenaza 3: Ej. Fluctuaciones económicas en costos de reactivos",
+                "Amenaza 4: Escriba otra amenaza..."
+            ]
+        });
+
+        // SECCIÓN 8: SERVICIOS Y EXÁMENES PRIORITARIOS
+        setupDynamicBullets({
+            containerId: 'servicesContainer',
+            hiddenInputId: 'servicesHiddenInput',
+            errorId: 'servicesError',
+            fieldClassName: 'service-field',
+            placeholders: [
+                "Ej: Perfil 20 y exámenes de rutina con entrega rápida",
+                "Ej: Perfil Prenatal y atención preferencial a embarazadas",
+                "Ej: Promoción de facilidades de pago a cuotas con Cashea",
+                "Ej: Perfil Tiroideo y exámenes especializados",
+                "Escriba otro servicio prioritario..."
+            ]
+        });
+
+        // SECCIÓN 8: MÉTRICAS DE ÉXITO (KPIs)
+        setupDynamicBullets({
+            containerId: 'metricsContainer',
+            hiddenInputId: 'metricsHiddenInput',
+            errorId: 'metricsError',
+            fieldClassName: 'metric-field',
+            placeholders: [
+                "Ej: Recibir al menos 20 a 30 solicitudes de cotización diarias en WhatsApp",
+                "Ej: Incremento del 25% en el volumen de pacientes atendidos en caja",
+                "Ej: Aumento en la tasa de conversión de cotizaciones a consultas agendadas",
+                "Ej: Medir el costo por paciente captado a través de Meta Ads",
+                "Escriba otra métrica de éxito..."
+            ]
+        });
+
+        // LÓGICA DE NAVEGACIÓN PASO A PASO
+        function updateStep(step) {
+            sections.forEach(sec => {
+                if (parseInt(sec.dataset.step) === step) {
+                    sec.classList.remove('hidden');
+                } else {
+                    sec.classList.add('hidden');
+                }
+            });
+
+            prevBtn.classList.toggle('hidden', step === 1);
+            if (step === totalSteps) {
+                nextBtn.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            const percent = (step / totalSteps) * 100;
+            progressBar.style.width = percent + '%';
+            currentStepNum.textContent = step;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (ENABLE_VALIDATIONS) {
+                const currentSec = document.querySelector(`.step-section[data-step="${currentStep}"]`);
+                const requiredInputs = currentSec.querySelectorAll('[required]');
+                let isValid = true;
+
+                requiredInputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        input.classList.add('border-red-500', 'ring-1', 'ring-red-500');
+                        isValid = false;
+                    } else {
+                        input.classList.remove('border-red-500', 'ring-1', 'ring-red-500');
+                    }
+                });
+
+                if (!isValid) {
+                    alert('Por favor, completa los campos obligatorios antes de continuar.');
+                    return;
+                }
+            }
+
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStep(currentStep);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStep(currentStep);
+            }
+        });
+
+        // MANEJO DE ENVÍO POR CORREO (FORMSPREE AJAX) Y GENERACIÓN DE PDF
+        const briefForm = document.getElementById('briefForm');
+        const successModal = document.getElementById('successModal');
+        const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+
+        briefForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtnNode = document.getElementById('submitBtn');
+            submitBtnNode.disabled = true;
+            submitBtnNode.innerText = "Enviando...";
+
+            const formData = new FormData(briefForm);
+            try {
+                const response = await fetch(briefForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    successModal.classList.remove('hidden');
+                } else {
+                    alert('Ocurrió un detalle al enviar el formulario. Intenta nuevamente.');
+                }
+            } catch (error) {
+                alert('Error de conexión al enviar el brief.');
+            } finally {
+                submitBtnNode.disabled = false;
+                submitBtnNode.innerText = "Enviar Master Brief 🚀";
+            }
+        });
+
+        downloadPdfBtn.addEventListener('click', () => {
+            sections.forEach(sec => sec.classList.remove('hidden'));
+
+            const opt = {
+                margin:       0.5,
+                filename:     'Master_Brief_Estrategico.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(briefForm).save().then(() => {
+                updateStep(currentStep);
+            });
+        });
+    </script>
+</body>
+</html>
