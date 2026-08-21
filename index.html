@@ -30,7 +30,7 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
 
-        /* REGLAS DE IMPRESIÓN Y EXPORTACIÓN A PDF LIMPIAS */
+        /* REGLAS DE IMPRESIÓN Y EXPORTACIÓN A PDF LIMPIAS Y COMPLETAS */
         @media print {
             /* Ocultar elementos de UI interactiva */
             #mainHeader,
@@ -58,6 +58,20 @@
             .grid > div {
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
+            }
+
+            /* REGLA MAESTRA ANTI-CORTE DE TEXTAREAS EN IMPRESIÓN */
+            textarea, input[type="text"] {
+                height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
+                white-space: pre-wrap !important;
+                word-break: break-word !important;
+                resize: none !important;
+            }
+
+            ::-webkit-scrollbar {
+                display: none !important;
             }
 
             body {
@@ -139,15 +153,15 @@
                     </div>
                     <div class="sm:col-span-2">
                         <label class="block text-sm font-semibold text-slate-700 mb-2">Historia Breve</label>
-                        <textarea name="1_historia" rows="3" placeholder="¿Cómo y cuándo nació el laboratorio?" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                        <textarea name="1_historia" rows="3" placeholder="¿Cómo y cuándo nació el laboratorio?" class="auto-expand w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                     </div>
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-2">Misión</label>
-                        <textarea name="1_mision" rows="3" placeholder="¿Qué hacen hoy por la salud de la gente y cómo lo hacen?" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                        <textarea name="1_mision" rows="3" placeholder="¿Qué hacen hoy por la salud de la gente y cómo lo hacen?" class="auto-expand w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                     </div>
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-2">Visión</label>
-                        <textarea name="1_vision" rows="3" placeholder="¿Dónde ven al laboratorio en los próximos 3 a 5 años?" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                        <textarea name="1_vision" rows="3" placeholder="¿Dónde ven al laboratorio en los próximos 3 a 5 años?" class="auto-expand w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                     </div>
 
                     <!-- PROPUESTA DE VALOR -->
@@ -167,7 +181,7 @@
 
                     <div class="sm:col-span-2">
                         <label class="block text-sm font-semibold text-slate-700 mb-2">Aspectos Legales a Considerar</label>
-                        <textarea name="1_legales" rows="2" placeholder="Permisos de salud, ley del ejercicio de bioanálisis, regulaciones de ofertas médicas..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                        <textarea name="1_legales" rows="2" placeholder="Permisos de salud, ley del ejercicio de bioanálisis, regulaciones de ofertas médicas..." class="auto-expand w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                     </div>
                 </div>
             </section>
@@ -190,12 +204,12 @@
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">Percepción Actual *</label>
                             <p class="text-xs text-slate-500 mb-2">¿Cómo cree que lo ven los pacientes hoy en día?</p>
-                            <textarea name="2_percepcion_actual" rows="3" placeholder="Ej: Un laboratorio tradicional, poco conocido en redes, rápido pero costoso..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                            <textarea name="2_percepcion_actual" rows="3" placeholder="Ej: Un laboratorio tradicional, poco conocido en redes, rápido pero costoso..." class="auto-expand w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">Percepción Deseada *</label>
                             <p class="text-xs text-slate-500 mb-2">¿Cómo quiere que lo recuerden?</p>
-                            <textarea name="2_percepcion_deseada" rows="3" placeholder="Ej: El laboratorio más moderno y confiable de la ciudad, los más amables y tecnológicos..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                            <textarea name="2_percepcion_deseada" rows="3" placeholder="Ej: El laboratorio más moderno y confiable de la ciudad, los más amables y tecnológicos..." class="auto-expand w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                         </div>
                     </div>
 
@@ -294,12 +308,12 @@
                         
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">¿Dónde se encuentran los pacientes a los que quieren llegar? *</label>
-                            <textarea name="4_ubicacion_objetivo" rows="2" placeholder="Ej: Queremos captar pacientes en Altamira, Los Palos Grandes, Chacao y zonas aledañas..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                            <textarea name="4_ubicacion_objetivo" rows="2" placeholder="Ej: Queremos captar pacientes en Altamira, Los Palos Grandes, Chacao y zonas aledañas..." class="auto-expand w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                         </div>
 
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">¿De qué zonas reciben más pacientes actualmente?</label>
-                            <textarea name="4_zonas_actuales" rows="2" placeholder="Ej: Actualmente la mayoría de nuestros pacientes vienen de El Recreo, Sabana Grande y La California..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                            <textarea name="4_zonas_actuales" rows="2" placeholder="Ej: Actualmente la mayoría de nuestros pacientes vienen de El Recreo, Sabana Grande y La California..." class="auto-expand w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                         </div>
                     </div>
 
@@ -308,12 +322,12 @@
 
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">¿Quién toma la decisión de ir al laboratorio?</label>
-                            <textarea name="4_tomador_decision" rows="3" placeholder="Ej: La madre que cuida la salud de la familia, el adulto joven que necesita exámenes preempleo, la persona mayor con control de patologías." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                            <textarea name="4_tomador_decision" rows="3" placeholder="Ej: La madre que cuida la salud de la familia, el adulto joven que necesita exámenes preempleo, la persona mayor con control de patologías." class="auto-expand w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                         </div>
 
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">¿Qué buscan cuando van a un laboratorio?</label>
-                            <textarea name="4_factores_busqueda" rows="3" placeholder="Ej: Cercanía, economía, facilidades de pago como Cashea, confianza en el diagnóstico." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                            <textarea name="4_factores_busqueda" rows="3" placeholder="Ej: Cercanía, economía, facilidades de pago como Cashea, confianza en el diagnóstico." class="auto-expand w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                         </div>
                     </div>
                 </div>
@@ -422,7 +436,7 @@
                     </div>
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-2">¿Con qué recursos, espacios o disponibilidad de personal se cuenta para la creación de contenido?</label>
-                        <textarea name="7_recursos_audiovisuales" rows="3" placeholder="Ej: Instalaciones iluminadas para fotos/videos, disposición de la bioanalista para grabar explicaciones breves, smartphone con buena cámara." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                        <textarea name="7_recursos_audiovisuales" rows="3" placeholder="Ej: Instalaciones iluminadas para fotos/videos, disposición de la bioanalista para grabar explicaciones breves, smartphone con buena cámara." class="auto-expand w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                     </div>
                 </div>
             </section>
@@ -448,7 +462,7 @@
                         <p class="text-xs text-slate-500 mb-2">
                             ¿Cuál es la meta comercial principal que esperan alcanzar en los próximos 3 a 6 meses?
                         </p>
-                        <textarea name="8_objetivo_macro" rows="2" placeholder="Ej: Incrementar la facturación mensual en un 30% o llenar la capacidad de atención de la sede durante las mañanas..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
+                        <textarea name="8_objetivo_macro" rows="2" placeholder="Ej: Incrementar la facturación mensual en un 30% o llenar la capacidad de atención de la sede durante las mañanas..." class="auto-expand w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition text-sm"></textarea>
                     </div>
 
                     <div>
@@ -533,6 +547,18 @@
         const currentStepNum = document.getElementById('currentStepNum');
 
         const ENABLE_VALIDATIONS = false;
+
+        // LÓGICA DE AUTO-EXPANSIÓN DE TEXTAREAS EN TIEMPO REAL
+        function initAutoExpandTextareas() {
+            const textareas = document.querySelectorAll('textarea');
+            textareas.forEach(ta => {
+                ta.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = (this.scrollHeight + 4) + 'px';
+                });
+            });
+        }
+        initAutoExpandTextareas();
 
         const stepBackBtns = document.querySelectorAll('.step-back-btn');
         stepBackBtns.forEach(btn => {
@@ -982,21 +1008,33 @@
             }
         });
 
-        // MANEJO DE IMPRESIÓN Y EXPORTACIÓN A PDF PERFECTA NATIVA
+        // MANEJO DE IMPRESIÓN Y EXPORTACIÓN A PDF ABSOLUTAMENTE COMPLETA NATIVA
         const briefForm = document.getElementById('briefForm');
         const successModal = document.getElementById('successModal');
 
         briefForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // 1. Desplegar temporalmente todas las secciones para la impresión
+            // 1. Mostrar todas las secciones del formulario
             sections.forEach(sec => sec.classList.remove('hidden'));
 
-            // 2. Ejecutar la impresión nativa del navegador (Guardar como PDF)
+            // 2. FORZAR LA AUTO-EXPANSIÓN COMPLETA DE TODOS LOS TEXTAREAS ANTES DE IMPRIMIR
+            const textareas = document.querySelectorAll('textarea');
+            textareas.forEach(ta => {
+                ta.style.height = 'auto';
+                ta.style.height = (ta.scrollHeight + 12) + 'px';
+                ta.style.overflow = 'hidden';
+            });
+
+            // 3. Ejecutar la impresión nativa del navegador (Guardar como PDF completo)
             window.print();
 
-            // 3. Al cerrar el cuadro de diálogo de impresión, restaurar paso actual y desplegar modal
+            // 4. Restaurar la vista normal tras cerrar la ventana de impresión
             setTimeout(() => {
+                textareas.forEach(ta => {
+                    ta.style.height = '';
+                    ta.style.overflow = '';
+                });
                 updateStep(currentStep);
                 successModal.classList.remove('hidden');
             }, 300);
